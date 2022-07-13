@@ -2,5 +2,4 @@ config
 data
 logs
 .idea
-runers
 .env
