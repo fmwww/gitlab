@@ -24,7 +24,6 @@ services:
     volumes:
       - "${DOCKER_SOCK}:/var/run/docker.sock"
       - "./runners/default-runner:/etc/gitlab-runner"
-    restart: always
     command: register --non-interactive --executor "docker" --docker-image alpine:latest --url "${INSTANCE_URL}" --registration-token "${REGISTRATION_TOKEN}" --description "default-runner" --tag-list "default" --run-untagged="true" --locked="false" --access-level="not_protected"
     networks:
       - gitlab
