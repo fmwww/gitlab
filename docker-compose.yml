@@ -18,3 +18,13 @@ services:
       - ./data:/var/opt/gitlab
     networks:
       - gitlab
+
+  default-runner:
+    image: "gitlab/gitlab-runner:latest"
+    volumes:
+      - "${DOCKER_SOCK}:/var/run/docker.sock"
+      - "./runners/default-runner:/etc/gitlab-runner"
+    restart: always
+    command: register --executor "docker" --docker-image alpine:latest --url "${RUNNER_URL}" --registration-token "${REGISTRATION_TOKEN}" --description "default-runner" --tag-list "default" --run-untagged="true" --locked="false" --access-level="not_protected"
+    networks:
+      - gitlab
