@@ -29,3 +29,14 @@ services:
       - gitlab
     networks:
       - gitlab
+
+  fe-runner:
+    image: "gitlab/gitlab-runner:latest"
+    volumes:
+      - "${DOCKER_SOCK}:/var/run/docker.sock"
+      - "./runners/fe-runner:/etc/gitlab-runner"
+    #    command: register --non-interactive --executor "docker" --docker-image alpine:latest --url "${INSTANCE_URL}" --registration-token "${REGISTRATION_TOKEN}" --description "default-runner" --tag-list "default" --run-untagged="true" --locked="false" --access-level="not_protected"
+    depends_on:
+      - gitlab
+    networks:
+      - gitlab
