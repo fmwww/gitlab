@@ -8,7 +8,7 @@ services:
     image: "gitlab/gitlab-ce:latest"
     hostname: $HOSTNAME
     ports:
-      - "${HTTP_PORT}:80"
+      - "${HTTP_PORT}:8090"
       - "${HTTPS_PORT}:443"
       - "${SSH_PORT}:22"
     restart: always
